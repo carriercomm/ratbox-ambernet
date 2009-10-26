@@ -69,6 +69,7 @@ struct LocalUser;
 
 #define IsOper(x)		((x)->umodes & UMODE_OPER)
 #define IsAdmin(x)		((x)->umodes & UMODE_ADMIN)
+#define IsOperHide(x)	((x)->umodes & UMODE_OPERHIDE)
 
 #define SetReject(x)		{(x)->status = STAT_REJECT; \
 				 (x)->handler = UNREGISTERED_HANDLER; }
@@ -174,6 +175,7 @@ struct LocalUser;
 #define UMODE_OPERSPY	   0x10000
 #define UMODE_CCONNEXT     0x20000	/* extended client connections */
 #define UMODE_SERVICE      0x40000
+#define UMODE_OPERHIDE	   0x80000  /* Hide oper status in /whois */
 #define UMODE_DEAF	   0x80000
 
 /* user information flags, only settable by remote mode or local oper */
@@ -195,7 +197,7 @@ struct LocalUser;
 		      UMODE_BOTS | UMODE_EXTERNAL | UMODE_LOCOPS | \
 		      UMODE_ADMIN | UMODE_UNAUTH | UMODE_CALLERID | \
 		      UMODE_OPERSPY | UMODE_CCONNEXT | UMODE_SERVICE | \
-		      UMODE_DEAF)
+		      UMODE_DEAF | UMODE_OPERHIDE)
 
 #define CLICAP_MULTI_PREFIX	0x0001
 

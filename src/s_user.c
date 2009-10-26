@@ -79,6 +79,7 @@ static struct flag_item user_modes[] = {
 	{UMODE_LOCOPS,		'l'},
 	{UMODE_NCHANGE,		'n'},
 	{UMODE_OPER,		'o'},
+	{UMODE_OPERHIDE,	'O'},
 	{UMODE_REJ,		'r'},
 	{UMODE_SERVNOTICE,	's'},
 #ifdef ENABLE_SERVICES
@@ -114,7 +115,7 @@ int user_modes_from_c_to_bitmask[] = {
 	0,			/* L */
 	0,			/* M */
 	0,			/* N */
-	0,			/* O */
+	UMODE_OPERHIDE,	/* O */
 	0,			/* P */
 	0,			/* Q */
 	0,			/* R */
