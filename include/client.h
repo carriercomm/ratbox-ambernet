@@ -175,8 +175,8 @@ struct LocalUser;
 #define UMODE_OPERSPY	   0x10000
 #define UMODE_CCONNEXT     0x20000	/* extended client connections */
 #define UMODE_SERVICE      0x40000
-#define UMODE_OPERHIDE	   0x80000  /* Hide oper status in /whois */
 #define UMODE_DEAF	   0x80000
+#define UMODE_OPERHIDE	   0x160000  /* Hide oper status in /whois */
 
 /* user information flags, only settable by remote mode or local oper */
 #define UMODE_OPER         0x100000	/* Operator */
