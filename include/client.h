@@ -176,12 +176,12 @@ struct LocalUser;
 #define UMODE_CCONNEXT     0x20000	/* extended client connections */
 #define UMODE_SERVICE      0x40000
 #define UMODE_DEAF	   0x80000
-#define UMODE_OPERHIDE	   0x160000  /* Hide oper status in /whois */
 
 /* user information flags, only settable by remote mode or local oper */
 #define UMODE_OPER         0x100000	/* Operator */
 #define UMODE_ADMIN        0x200000	/* Admin on server */
 
+#define UMODE_OPERHIDE	   0x400000 /* Hide oper status in /whois */
 #define UMODE_ALL	   UMODE_SERVNOTICE
 
 /* overflow flags */
