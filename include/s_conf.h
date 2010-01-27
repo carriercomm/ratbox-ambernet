@@ -21,7 +21,7 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301
  *  USA
  *
- *  $Id: s_conf.h 26304 2008-12-16 03:08:43Z androsyn $
+ *  $Id: s_conf.h 26688 2009-10-07 20:43:14Z leeh $
  */
 
 #ifndef INCLUDED_s_conf_h
@@ -197,6 +197,7 @@ struct config_file_entry
 	int use_whois_actually;
 	int disable_auth;
 	int connect_timeout;
+	int post_registration_delay;
 	int burst_away;
 	int reject_after_count;
 	int reject_duration;

@@ -1,9 +1,67 @@
-androsyn    2009/05/21 18:45:36 UTC	(20090521_0-26567)
+androsyn    2010/01/25 16:59:16 UTC	(20100125_0-26757)
   Log:
-  tag libratbox LIBRATBOX_3_0_4
+  tag libratbox LIBRATBOX_3_0_6
 
   Modified:
-	libratbox/tags/LIBRATBOX_3_0_4/ (File Added) 
+	libratbox/tags/LIBRATBOX_3_0_6/ (File Added) 
+
+
+androsyn    2009/08/05 17:05:58 UTC	(20090805_0-26650)
+  Log:
+  add back checks for cp, mv etc
+
+  Modified:
+	libratbox/branches/LIBRATBOX_3_0/Makefile.in (File Modified) 
+	libratbox/branches/LIBRATBOX_3_0/configure (File Modified) 
+	libratbox/branches/LIBRATBOX_3_0/configure.ac (File Modified) 
+	libratbox/branches/LIBRATBOX_3_0/src/Makefile.in (File Modified) 
+
+
+androsyn    2009/07/27 21:27:47 UTC	(20090727_0-26632)
+  Log:
+  fix ssl certs/key reloading with gnutls
+
+  Modified:
+	libratbox/branches/LIBRATBOX_3_0/src/gnutls.c (File Modified) 
+
+
+androsyn    2009/07/23 19:14:13 UTC	(20090723_1-26628)
+  Log:
+  fix two typos
+
+  Modified:
+	libratbox/branches/LIBRATBOX_3_0/configure (File Modified) 
+	libratbox/branches/LIBRATBOX_3_0/configure.ac (File Modified) 
+
+
+androsyn    2009/07/23 19:10:41 UTC	(20090723_0-26626)
+  Log:
+  - Check to see if certain warning flags are supported by the compiler and use them all the time
+  - Add -fno-strict-aliasing to the list of flags passed, this seems to be needed for gcc 4.4 now
+    as we end up breaking strict aliasing rules when doing a lot of things
+  - Remove unneeded checks for rm etc as autoconf already checks these anyways
+  - Rerun libtoolize to get a newer version of libtool
+  - Rerun autotools
+  
+  
+
+  Modified:
+	libratbox/branches/LIBRATBOX_3_0/Makefile.in (File Modified) 
+	libratbox/branches/LIBRATBOX_3_0/aclocal.m4 (File Modified) 
+	libratbox/branches/LIBRATBOX_3_0/configure (File Modified) 
+	libratbox/branches/LIBRATBOX_3_0/configure.ac (File Modified) 
+	libratbox/branches/LIBRATBOX_3_0/include/libratbox_config.h.in (File Modified) 
+	libratbox/branches/LIBRATBOX_3_0/ltmain.sh (File Modified) 
+	libratbox/branches/LIBRATBOX_3_0/src/Makefile.am (File Modified) 
+	libratbox/branches/LIBRATBOX_3_0/src/Makefile.in (File Modified) 
+
+
+androsyn    2009/07/09 15:03:14 UTC	(20090709_0-26614)
+  Log:
+  commit jilles fix for computing number of file descriptors correctly
+
+  Modified:
+	libratbox/branches/LIBRATBOX_3_0/src/commio.c (File Modified) 
 
 
 androsyn    2009/05/15 22:08:07 UTC	(20090515_0-26547)

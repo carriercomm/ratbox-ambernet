@@ -20,7 +20,7 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301
  *  USA
  *
- *  $Id: reject.c 26320 2008-12-16 20:10:49Z jilles $
+ *  $Id: reject.c 26592 2009-06-05 15:02:08Z androsyn $
  */
 
 #include "stdinc.h"
@@ -325,6 +325,22 @@ void
 remove_dline(struct ConfItem *aconf)
 {
 	delete_ipline(aconf, dline_tree);
+}
+
+void 
+remove_perm_dlines(void)
+{
+	rb_patricia_node_t *pnode;
+	struct ConfItem *aconf;
+	RB_PATRICIA_WALK(dline_tree->head, pnode)
+	{
+		aconf = pnode->data;
+		if(!(aconf->flags & CONF_FLAGS_TEMPORARY))
+		{
+			remove_dline(aconf);	
+		}		
+	}
+	RB_PATRICIA_WALK_END;
 }
 
 void

@@ -1,4 +1,4 @@
-dnl $Id: configure.ac 26547 2009-05-15 22:08:07Z androsyn $
+dnl $Id: configure.ac 26650 2009-08-05 17:05:58Z androsyn $
 dnl Process this file with autoconf to produce a configure script.
 
 dnl TODO: clean up all the OpenSSL and shared module checking stuff;
@@ -8,7 +8,7 @@ dnl said functions need to be just about as complex as they already are.
 AC_PREREQ(2.63)
 AUTOMAKE_OPTIONS = 1.10
 dnl Sneaky way to get an Id tag into the configure script
-AC_COPYRIGHT([$Id: configure.ac 26547 2009-05-15 22:08:07Z androsyn $])
+AC_COPYRIGHT([$Id: configure.ac 26650 2009-08-05 17:05:58Z androsyn $])
 AC_INIT([libratbox],[devel])
 AM_INIT_AUTOMAKE(AC_PACKAGE_TARNAME, AC_PACKAGE_VERSION, -)
 
@@ -42,22 +42,49 @@ AC_C_INLINE
 AC_C_CONST
 AC_PROG_MAKE_SET
 AC_PROG_INSTALL
-AC_PATH_PROG(AUTOMAKE, automake)
-AC_PATH_PROG(ACLOCAL, aclocal)
-AC_PATH_PROG(AUTOHEADER, autoheader)
-AC_PATH_PROG(AS, as)
-AC_PATH_PROG(RM, rm)
 AC_PATH_PROG(CP, cp)
 AC_PATH_PROG(MV, mv)
-AC_PATH_PROG(LN, ln)
-AC_PATH_PROG(TOUCH, touch)
+AC_PATH_PROG(RB_RM, rm)
+
+
 AC_LANG(C)
+
+
 AC_LIBTOOL_DLOPEN
 AC_PROG_LIBTOOL
 
 GCC_STACK_PROTECT_CC
 
+cc_supports_flag() {
+	local CFLAGS="$@"
+	AC_MSG_CHECKING([whether $CC supports $@])
+	AC_COMPILE_IFELSE([int main(){return 0;}] ,
+	[RC=0; AC_MSG_RESULT([yes])],
+	[RC=1; AC_MSG_RESULT([no])])
+	return $RC
+}
 
+if cc_supports_flag -fno-strict-aliasing; then
+	CFLAGS="$CFLAGS -fno-strict-aliasing"
+fi
+
+WARNLIST="
+	all 
+	cast-qual
+	missing-declarations
+	missing-prototypes
+	nested-externs
+	shadow
+	write-strings
+	no-unused
+	unused-function
+	unused-variable"
+
+for j in $WARNLIST; do
+	if cc_supports_flag -W$j; then
+		EXTRA_WARNINGS="$EXTRA_WARNINGS -W$j";
+	fi
+done
 
 LIBTOOL="$LIBTOOL --silent"
 
@@ -444,9 +471,8 @@ if test "$balloc" = no; then
 	AC_DEFINE([NOBALLOC], 1, [Define to 1 if you wish to disable the block allocator.])
 fi
 
-AC_ARG_ENABLE(warnings,
-AC_HELP_STRING([--enable-warnings],[Enable all sorts of warnings for debugging.]),
-[CFLAGS="$CFLAGS -Wall -Werror -Wcast-qual -Wmissing-declarations -Wmissing-prototypes -Wnested-externs -Wshadow -Wwrite-strings -W -Wno-unused -Wunused-function -Wunused-variable"],[])
+
+
 
 AC_SUBST(LDFLAGS)
 AC_SUBST(PICFLAGS)
@@ -456,6 +482,7 @@ AC_SUBST(SSL_CFLAGS)
 AC_SUBST(SSL_LIBS)
 AC_SUBST(GNUTLS_CFLAGS)
 AC_SUBST(GNUTLS_LIBS)
+AC_SUBST(EXTRA_WARNINGS)
 
 if test "$prefix" = "NONE"; then 
 	AC_DEFINE_UNQUOTED(RB_PREFIX, "$ac_default_prefix", [Prefix where libratbox is installed.])

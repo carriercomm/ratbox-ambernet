@@ -21,7 +21,7 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301
  *  USA
  *
- *  $Id: m_links.c 26094 2008-09-19 15:33:46Z androsyn $
+ *  $Id: m_links.c 26750 2010-01-25 16:48:08Z androsyn $
  */
 
 #include "stdinc.h"
@@ -58,7 +58,7 @@ mapi_hlist_av1 links_hlist[] = {
 	{NULL, NULL}
 };
 
-DECLARE_MODULE_AV1(links, NULL, NULL, links_clist, links_hlist, NULL, "$Revision: 26094 $");
+DECLARE_MODULE_AV1(links, NULL, NULL, links_clist, links_hlist, NULL, "$Revision: 26750 $");
 
 static void send_links_cache(struct Client *source_p);
 
@@ -94,6 +94,8 @@ mo_links(struct Client *client_p, struct Client *source_p, int parc, const char 
 
 	if(parc > 2)
 	{
+		if(strlen(parv[2]) > HOSTLEN)
+			return 0;
 		if(hunt_server(client_p, source_p, ":%s LINKS %s :%s", 1, parc, parv)
 		   != HUNTED_ISME)
 			return 0;
@@ -166,19 +168,21 @@ clean_string(char *dest, const unsigned char *src, size_t len)
 	if(dest == NULL || src == NULL)
 		return NULL;
 
-	len -= 3;		/* allow for worst case, '^A\0' */
-
-	while(*src && (len > 0))
+	while(*src && (len > 1))
 	{
 		if(*src & 0x80)	/* if high bit is set */
 		{
 			*d++ = '.';
 			--len;
+			if(len <= 1)
+				break;
 		}
 		else if(!IsPrint(*src))	/* if NOT printable */
 		{
 			*d++ = '^';
 			--len;
+			if(len <= 1)
+				break;
 			*d++ = 0x40 + *src;	/* turn it into a printable */
 		}
 		else

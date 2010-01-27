@@ -21,7 +21,7 @@
  *  USA
  *
  *
- *  $Id: reject.h 26316 2008-12-16 19:28:23Z androsyn $
+ *  $Id: reject.h 26592 2009-06-05 15:02:08Z androsyn $
  */
 #ifndef INCLUDED_reject_h
 #define INCLUDED_reject_h
@@ -51,6 +51,6 @@ int inc_global_cidr_count(struct Client *client_p);
 void dec_global_cidr_count(struct Client *client_p);
 int check_global_cidr_count(struct Client *client_p);
 void rehash_global_cidr_tree(void);
-
+void remove_perm_dlines(void);
 
 #endif

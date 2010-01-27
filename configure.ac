@@ -1,4 +1,4 @@
-dnl $Id: configure.ac 26541 2009-05-15 22:06:13Z androsyn $
+dnl $Id: configure.ac 26732 2010-01-22 17:26:08Z androsyn $
 dnl Process this file with autoconf to produce a configure script.
 
 dnl TODO: clean up all the OpenSSL and shared module checking stuff;
@@ -8,7 +8,7 @@ dnl said functions need to be just about as complex as they already are.
 AC_PREREQ(2.63)
 AUTOMAKE_OPTIONS = 1.10
 dnl Sneaky way to get an Id tag into the configure script
-AC_COPYRIGHT([$Id: configure.ac 26541 2009-05-15 22:06:13Z androsyn $])
+AC_COPYRIGHT([$Id: configure.ac 26732 2010-01-22 17:26:08Z androsyn $])
 AC_INIT([ircd-ratbox],[devel])
 AM_INIT_AUTOMAKE
 
@@ -18,6 +18,10 @@ AC_PREFIX_DEFAULT(/usr/local/ircd)
 AC_GNU_SOURCE
 
 dnl Checks for programs.
+AC_PATH_PROG(CP, cp)
+AC_PATH_PROG(MV, mv)
+AC_PATH_PROG(RB_RM, rm)
+
 AC_PROG_CC_C99
 
 if test x"$ac_cv_prog_cc_c99" = "xno"; then
@@ -63,25 +67,45 @@ if test "$INSTALL" = "${srcdir}/install-sh -c"; then
   INSTALL="${srcpwd}/install-sh -c"
 fi
 
-AC_PATH_PROG(AUTOMAKE, automake)
-AC_PATH_PROG(ACLOCAL, aclocal)
-AC_PATH_PROG(AUTOHEADER, autoheader)
-AC_PATH_PROG(AS, as)
-AC_PATH_PROG(RM, rm)
-AC_PATH_PROG(CP, cp)
-AC_PATH_PROG(MV, mv)
-AC_PATH_PROG(LN, ln)
-AC_PATH_PROG(TOUCH, touch)
-AC_PATH_PROG(PKG_CONFIG, pkg-config)
-#AC_PATH_PROG(LEX, flex, [no])
 AC_PROG_YACC
-AC_PROG_SED
 AC_LANG(C)
 
 AM_CONDITIONAL([STATIC_MODULES], test "$enable_static" = "yes")
 AC_PROG_LIBTOOL
 
 GCC_STACK_PROTECT_CC
+
+cc_accepts_flag()
+{
+	local CFLAGS="$@"
+	AC_MSG_CHECKING([whether $CC accepts $@])
+	AC_COMPILE_IFELSE([int main(){return 0;}] ,
+	[RC=0; AC_MSG_RESULT([yes])],
+	[RC=1; AC_MSG_RESULT([no])]) 
+	return $RC
+}
+ 
+if cc_accepts_flag -fno-strict-aliasing; then
+	CFLAGS="$CFLAGS -fno-strict-aliasing" 
+fi
+  
+WARNLIST="  
+	all  
+	cast-qual
+	missing-declarations
+	missing-prototypes  
+	nested-externs
+	shadow
+	write-strings
+	no-unused
+	unused-function
+	unused-variable" 
+
+for x in $WARNLIST; do 
+	if cc_accepts_flag -W$x; then
+		WARNFLAGS="$WARNFLAGS -W$x";
+	fi
+done
 
 LIBTOOL="$LIBTOOL --silent"
 
@@ -123,7 +147,7 @@ AC_HEADER_DIRENT
 AC_CHECK_HEADERS([sys/types.h sys/resource.h sys/param.h sys/stat.h sys/socket.h netinet/in.h arpa/inet.h errno.h stddef.h ])
 AC_HEADER_TIME
 
-AC_CHECK_FUNCS([snprintf])
+AC_CHECK_FUNCS([snprintf lstat stat])
 
 dnl Networking Functions
 dnl ====================
@@ -442,12 +466,7 @@ if test "$profile" = yes; then
 else
 	AC_MSG_RESULT(no)
 fi
-WARNFLAGS="-Wall"
-AC_ARG_ENABLE(warnings,
-AC_HELP_STRING([--enable-warnings],[Enable all sorts of warnings for debugging.]),
-[WARNFLAGS="-Wall -Werror -Wcast-qual -Wcast-align -Wmissing-declarations -Wmissing-prototypes -Wnested-externs -Wshadow -Wwrite-strings -W -Wno-unused -Wunused-function -Wunused-variable"],[])
 
-AC_SUBST(WARNFLAGS)
 dnl Server Tweaks
 dnl =============
 
@@ -533,6 +552,7 @@ AC_SUBST(LDFLAGS)
 AC_SUBST(PICFLAGS)
 AC_SUBST(CFLAGS)
 AC_SUBST(SEDOBJ)
+AC_SUBST(WARNFLAGS)
 
 if test "$prefix" = "NONE"; then 
 	AC_DEFINE_UNQUOTED(IRCD_PREFIX, "$ac_default_prefix", [Prefix where the ircd is installed.])

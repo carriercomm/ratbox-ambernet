@@ -28,7 +28,7 @@
  * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * $Id: bandbi.c 26304 2008-12-16 03:08:43Z androsyn $
+ * $Id: bandbi.c 26592 2009-06-05 15:02:08Z androsyn $
  */
 #include "stdinc.h"
 #include "ratbox_lib.h"
@@ -326,7 +326,8 @@ bandb_handle_finish(void)
 
 	clear_out_address_conf_bans();
 	clear_s_newconf_bans();
-
+	remove_perm_dlines();
+	
 	RB_DLINK_FOREACH_SAFE(ptr, next_ptr, bandb_pending.head)
 	{
 		aconf = ptr->data;

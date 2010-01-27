@@ -18,10 +18,8 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301
  *  USA
  *
- *  $Id: dns.c 26094 2008-09-19 15:33:46Z androsyn $
+ *  $Id: dns.c 26644 2009-07-28 16:59:44Z androsyn $
  */
-#define __EXTENSIONS__ 1
-
 
 #include "stdinc.h"
 #include "ratbox_lib.h"

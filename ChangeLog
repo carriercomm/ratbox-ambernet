@@ -1,17 +1,251 @@
-androsyn    2009/05/21 18:46:58 UTC	(20090521_3-26572)
+androsyn    2010/01/25 17:00:30 UTC	(20100125_2-26761)
   Log:
   change libratbox external to use the tagged version
 
   Modified:
-	ircd-ratbox/tags/RATBOX_3_0_4/  (Property Modified)
+	ircd-ratbox/tags/RATBOX_3_0_6/  (Property Modified)
 
 
-androsyn    2009/05/21 18:45:58 UTC	(20090521_2-26569)
+androsyn    2010/01/25 16:59:41 UTC	(20100125_1-26759)
   Log:
-  tag ircd-ratbox RATBOX_3_0_4
+  tag ircd-ratbox RATBOX_3_0_6
 
   Modified:
-	ircd-ratbox/tags/RATBOX_3_0_4/ (File Added) 
+	ircd-ratbox/tags/RATBOX_3_0_6/ (File Added) 
+
+
+androsyn    2010/01/25 16:48:08 UTC	(20100125_0-26750)
+  Log:
+  Fix a critical bug in /links handling and bump patchlevel and update RELNOTES
+
+  Modified:
+	ircd-ratbox/branches/RATBOX_3_0/RELNOTES (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/include/patchlevel.h (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/modules/m_links.c (File Modified) 
+
+
+androsyn    2010/01/22 17:36:00 UTC	(20100122_1-26734)
+  Log:
+  update RELNOTES and patchlevel
+
+  Modified:
+	ircd-ratbox/branches/RATBOX_3_0/RELNOTES (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/include/patchlevel.h (File Modified) 
+
+
+androsyn    2010/01/22 17:26:08 UTC	(20100122_0-26732)
+  Log:
+  Fix a bug with /quote help and rerun autoconf and friends too.
+  
+
+  Modified:
+	ircd-ratbox/branches/RATBOX_3_0/Makefile.in (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/aclocal.m4 (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/bandb/Makefile.in (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/bandb/sqlite3/Makefile.in (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/config.guess (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/config.sub (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/configure (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/configure.ac (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/contrib/Makefile.in (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/help/Makefile.in (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/include/setup.h.in (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/install-sh (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/libltdl/config-h.in (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/libltdl/configure (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/ltmain.sh (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/modules/Makefile.in (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/resolver/Makefile.in (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/src/Makefile.in (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/src/cache.c (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/ssld/Makefile.in (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/tools/Makefile.in (File Modified) 
+
+
+androsyn    2010/01/06 16:45:36 UTC	(20100106_0-26722)
+  Log:
+  add code to kick out debugging info for the mangled aconf->status bug when expiring dlines and not crash when it happens
+
+  Modified:
+	ircd-ratbox/branches/RATBOX_3_0/src/s_conf.c (File Modified) 
+
+
+jilles      2009/11/25 23:05:33 UTC	(20091125_2-26714)
+  Log:
+  merge r26708: Add two more reasons why ssld_count>1 can be useful:
+  bugs and fd limits.
+  
+
+  Modified:
+	ircd-ratbox/branches/RATBOX_3_0/doc/example.conf (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/doc/example.efnet.conf (File Modified) 
+
+
+jilles      2009/11/25 23:02:41 UTC	(20091125_1-26712)
+  Log:
+  merge r26706: ssld: Fix an fd leak when closing connections.
+  
+
+  Modified:
+	ircd-ratbox/branches/RATBOX_3_0/ssld/ssld.c (File Modified) 
+
+
+jilles      2009/11/25 23:00:32 UTC	(20091125_0-26710)
+  Log:
+  merge r26704: ssld: Do not crash if not all fds in a message could be received.
+  Actually fill the mod_ctl_buf_t.nfds field.
+  
+
+  Modified:
+	ircd-ratbox/branches/RATBOX_3_0/ssld/ssld.c (File Modified) 
+
+
+leeh        2009/10/07 20:43:14 UTC	(20091007_0-26688)
+  Log:
+  - add in new conf option for post_registration_delay, which basically stops
+    us parsing anything from clients until that delay has completed..
+  
+    *runs away from androsyn*
+  
+
+  Modified:
+	ircd-ratbox/branches/RATBOX_3_0/doc/example.conf (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/doc/example.efnet.conf (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/include/s_conf.h (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/src/newconf.c (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/src/packet.c (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/src/s_conf.c (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/src/s_user.c (File Modified) 
+
+
+androsyn    2009/07/28 16:59:44 UTC	(20090728_3-26644)
+  Log:
+  __EXTENSIONS__ is not needed here now as autoconf checks for this
+
+  Modified:
+	ircd-ratbox/branches/RATBOX_3_0/src/dns.c (File Modified) 
+
+
+androsyn    2009/07/28 15:08:45 UTC	(20090728_2-26642)
+  Log:
+  a bit more build issue fixes
+
+  Modified:
+	ircd-ratbox/branches/RATBOX_3_0/contrib/Makefile.am (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/contrib/Makefile.in (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/modules/Makefile.am (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/modules/Makefile.in (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/src/Makefile.am (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/src/Makefile.in (File Modified) 
+
+
+androsyn    2009/07/28 15:03:57 UTC	(20090728_1-26638)
+  Log:
+  fix a few more issues
+
+  Modified:
+	ircd-ratbox/branches/RATBOX_3_0/contrib/Makefile.am (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/contrib/Makefile.in (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/modules/Makefile.am (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/modules/Makefile.in (File Modified) 
+
+
+androsyn    2009/07/28 15:01:11 UTC	(20090728_0-26636)
+  Log:
+  lets see if this fixes some build issues
+
+  Modified:
+	ircd-ratbox/branches/RATBOX_3_0/Makefile.in (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/bandb/Makefile.in (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/bandb/sqlite3/Makefile.in (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/configure (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/configure.ac (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/contrib/Makefile.in (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/doc/Makefile.in (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/help/Makefile.in (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/modules/Makefile.in (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/resolver/Makefile.in (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/src/Makefile.am (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/src/Makefile.in (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/ssld/Makefile.in (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/tools/Makefile.in (File Modified) 
+
+
+androsyn    2009/07/27 21:33:20 UTC	(20090727_0-26634)
+  Log:
+  add cp/rm commands back in
+
+  Modified:
+	ircd-ratbox/branches/RATBOX_3_0/src/Makefile.am (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/src/Makefile.in (File Modified) 
+
+
+androsyn    2009/07/23 19:15:31 UTC	(20090723_1-26630)
+  Log:
+  - Check to see if certain warning flags are supported by the compiler and use them all the time
+  - Add -fno-strict-aliasing to the list of flags passed, this seems to be needed for gcc 4.4 now
+    as we end up breaking strict aliasing rules when doing a lot of things
+  - Remove unneeded checks for rm etc as autoconf already checks these anyways
+  - Rerun libtoolize to get a newer version of libtool
+  - Rerun autotools
+  
+  
+
+  Modified:
+	ircd-ratbox/branches/RATBOX_3_0/Makefile.in (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/aclocal.m4 (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/bandb/Makefile.in (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/bandb/sqlite3/Makefile.in (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/config.guess (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/config.sub (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/configure (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/configure.ac (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/contrib/Makefile.in (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/help/Makefile.in (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/include/setup.h.in (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/install-sh (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/ltmain.sh (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/modules/Makefile.in (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/resolver/Makefile.in (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/src/Makefile.in (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/ssld/Makefile.in (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/tools/Makefile.in (File Modified) 
+
+
+androsyn    2009/07/23 18:52:42 UTC	(20090723_0-26620)
+  Log:
+  remove an unneeded ifdef/include
+
+  Modified:
+	ircd-ratbox/branches/RATBOX_3_0/src/s_serv.c (File Modified) 
+
+
+androsyn    2009/06/05 15:02:08 UTC	(20090605_0-26592)
+  Log:
+  fix /rehash tdlines and /rehash bans so that both deal with dlines correctly
+
+  Modified:
+	ircd-ratbox/branches/RATBOX_3_0/include/reject.h (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/modules/m_rehash.c (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/src/bandbi.c (File Modified) 
+	ircd-ratbox/branches/RATBOX_3_0/src/reject.c (File Modified) 
+
+
+leeh        2009/05/29 19:10:36 UTC	(20090529_0-26590)
+  Log:
+  - add in some missing semicolons
+  
+
+  Modified:
+	ircd-ratbox/branches/RATBOX_3_0/ssld/ssld.c (File Modified) 
+
+
+androsyn    2009/05/28 19:01:12 UTC	(20090528_0-26580)
+  Log:
+  improve error handling if we end up getting a NULL rb_fde_t
+
+  Modified:
+	ircd-ratbox/branches/RATBOX_3_0/ssld/ssld.c (File Modified) 
 
 
 androsyn    2009/05/21 18:44:40 UTC	(20090521_1-26565)
