@@ -20,7 +20,7 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301
  *  USA
  *
- *  $Id: newconf.c 26535 2009-05-13 15:49:14Z androsyn $               
+ *  $Id: newconf.c 26688 2009-10-07 20:43:14Z leeh $               
  * 
  */
 
@@ -2388,6 +2388,7 @@ static struct conf_items conf_general_table[] =
 	{ "reject_duration",	CF_TIME,  NULL, 0, &ConfigFileEntry.reject_duration	},
 	{ "throttle_count",	CF_INT,   NULL, 0, &ConfigFileEntry.throttle_count	},
 	{ "throttle_duration",	CF_TIME,  NULL, 0, &ConfigFileEntry.throttle_duration	},
+	{ "post_registration_delay", CF_TIME, NULL, 0, &ConfigFileEntry.post_registration_delay },
 	{ "short_motd",		CF_YESNO, NULL, 0, &ConfigFileEntry.short_motd		},
 	{ "stats_c_oper_only",	CF_YESNO, NULL, 0, &ConfigFileEntry.stats_c_oper_only	},
 	{ "stats_e_disabled",	CF_YESNO, NULL, 0, &ConfigFileEntry.stats_e_disabled	},

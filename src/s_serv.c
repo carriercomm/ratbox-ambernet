@@ -21,14 +21,10 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301
  *  USA
  *
- *  $Id: s_serv.c 26533 2009-05-13 15:42:20Z androsyn $
+ *  $Id: s_serv.c 26620 2009-07-23 18:52:42Z androsyn $
  */
 
 #include "stdinc.h"
-
-#ifdef USE_CHALLENGE
-#include <openssl/rsa.h>
-#endif
 
 #include "struct.h"
 #include "s_serv.h"

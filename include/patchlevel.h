@@ -21,12 +21,12 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301
  *  USA
  *
- *  $Id: patchlevel.h 26565 2009-05-21 18:44:40Z androsyn $
+ *  $Id: patchlevel.h 26750 2010-01-25 16:48:08Z androsyn $
  */
 
 #ifndef PATCHLEVEL
-#define PATCHLEVEL   "ircd-ratbox-3.0.4-ambernet"
-#define PATCHLEVEL_NUM	0300030500
+#define PATCHLEVEL   "ircd-ratbox-3.0.6-ambernet"
+#define PATCHLEVEL_NUM	0300060500
 
 /* patchlevel numbers:
  * <major><minor><point><status><statusnum>

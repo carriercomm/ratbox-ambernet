@@ -21,7 +21,7 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301
  *  USA
  *
- *  $Id: commio.c 26254 2008-12-10 04:04:38Z androsyn $
+ *  $Id: commio.c 26614 2009-07-09 15:03:14Z androsyn $
  */
 #include <libratbox_config.h>
 #include <ratbox_lib.h>
@@ -2156,7 +2156,7 @@ rb_recv_fd_buf(rb_fde_t *F, void *data, size_t datasize, rb_fde_t **xF, int nfds
 	if(msg.msg_controllen > 0 && msg.msg_control != NULL
 	   && (cmsg = CMSG_FIRSTHDR(&msg)) != NULL)
 	{
-		rfds = (msg.msg_controllen - sizeof(struct cmsghdr)) / sizeof(int);
+		rfds = ((unsigned char *)cmsg + cmsg->cmsg_len - CMSG_DATA(cmsg)) / sizeof(int);
 
 		for(x = 0; x < nfds && x < rfds; x++)
 		{

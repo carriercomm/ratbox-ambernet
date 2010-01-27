@@ -1,9 +1,9 @@
-# $Id: Makefile.am 26046 2008-09-09 16:37:30Z androsyn $
+# $Id: Makefile.am 26626 2009-07-23 19:10:41Z androsyn $
 
 AUTOMAKE_OPTIONS = foreign
 
 INCLUDES = -I. -I../include @SSL_CFLAGS@ @GNUTLS_CFLAGS@
-
+CFLAGS = @EXTRA_WARNINGS@ @CFLAGS@
 BUILT_SOURCES = version.c
 
 version.c: version.c.SH ../CREDITS

@@ -20,7 +20,7 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301
  *  USA
  *
- *  $Id: gnutls.c 26296 2008-12-13 03:36:00Z androsyn $
+ *  $Id: gnutls.c 26632 2009-07-27 21:27:47Z androsyn $
  */
 
 #include <libratbox_config.h>
@@ -307,6 +307,13 @@ rb_setup_ssl_server(const char *cert, const char *keyfile, const char *dhfile)
 		return 0;
 	}
 
+	gnutls_certificate_free_credentials(x509);
+
+	if(gnutls_certificate_allocate_credentials(&x509) != GNUTLS_E_SUCCESS)
+	{
+		rb_lib_log("rb_init_ssl: Unable to allocate SSL/TLS certificate credentials");
+		return 0;
+	}
 
 	if((ret =
 	    gnutls_certificate_set_x509_key_mem(x509, d_cert, d_key,

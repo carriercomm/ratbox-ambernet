@@ -21,7 +21,7 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301
  *  USA
  *
- *  $Id: s_user.c 26094 2008-09-19 15:33:46Z androsyn $
+ *  $Id: s_user.c 26688 2009-10-07 20:43:14Z leeh $
  */
 
 #include "stdinc.h"
@@ -503,6 +503,8 @@ register_local_user(struct Client *client_p, struct Client *source_p, const char
 	if(++Count.total > Count.max_tot)
 		Count.max_tot = Count.total;
 	source_p->localClient->allow_read = MAX_FLOOD_BURST;
+
+	source_p->localClient->firsttime = rb_current_time();
 
 	Count.totalrestartcount++;
 

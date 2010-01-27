@@ -21,7 +21,7 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301
  *  USA
  *
- *  $Id: m_rehash.c 26094 2008-09-19 15:33:46Z androsyn $
+ *  $Id: m_rehash.c 26592 2009-06-05 15:02:08Z androsyn $
  */
 
 #include "stdinc.h"
@@ -54,7 +54,7 @@ struct Message rehash_msgtab = {
 
 mapi_clist_av1 rehash_clist[] = { &rehash_msgtab, NULL };
 
-DECLARE_MODULE_AV1(rehash, NULL, NULL, rehash_clist, NULL, NULL, "$Revision: 26094 $");
+DECLARE_MODULE_AV1(rehash, NULL, NULL, rehash_clist, NULL, NULL, "$Revision: 26592 $");
 
 struct hash_commands
 {
@@ -172,8 +172,7 @@ rehash_tdlines(struct Client *source_p)
 		RB_DLINK_FOREACH_SAFE(ptr, next_ptr, temp_dlines[i].head)
 		{
 			aconf = ptr->data;
-
-			delete_one_address_conf(aconf->host, aconf);
+			remove_dline(aconf);
 			rb_dlinkDestroy(ptr, &temp_dlines[i]);
 		}
 	}
