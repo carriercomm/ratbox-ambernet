@@ -8,6 +8,7 @@ Usermodes: (* designates that the umode is oper only)
          +g     - "caller id" mode only allow accept clients to message you
          +o     - Designates this client is an IRC Operator.
                   Use the /oper command to attain this.
+       * +O     - Hides oper status from normal users.
        * +a     - Is marked as a server admin in whois.
        * +b     - Can see possible bot warnings.
        * +c     - Can see client connections and exits.
