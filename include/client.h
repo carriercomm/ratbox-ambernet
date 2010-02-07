@@ -69,8 +69,6 @@ struct LocalUser;
 
 #define IsOper(x)		((x)->umodes & UMODE_OPER)
 #define IsAdmin(x)		((x)->umodes & UMODE_ADMIN)
-#define IsOperHide(x)	((x)->umodes & UMODE_OPERHIDE)
-#define IsFarConnect(x) ((x)->umodes & UMODE_FARCONNECT)
 
 #define SetReject(x)		{(x)->status = STAT_REJECT; \
 				 (x)->handler = UNREGISTERED_HANDLER; }
@@ -279,6 +277,8 @@ struct LocalUser;
 #define IsSetCallerId(x)	((x)->umodes & UMODE_CALLERID)
 #define IsService(x)		((x)->umodes & UMODE_SERVICE)
 #define IsDeaf(x)		((x)->umodes & UMODE_DEAF)
+#define IsOperHide(x)	((x)->umodes & UMODE_OPERHIDE)
+#define IsFarConnect(x) ((x)->umodes & UMODE_FARCONNECT)
 
 #define SetNeedId(x)            ((x)->flags |= FLAGS_NEEDID)
 #define IsNeedId(x)             (((x)->flags & FLAGS_NEEDID) != 0)
