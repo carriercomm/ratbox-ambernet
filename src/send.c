@@ -572,6 +572,50 @@ sendto_channel_flags(struct Client *one, int type, struct Client *source_p,
 	rb_linebuf_donebuf(&rb_linebuf_id);
 }
 
+/* sendto_realops_flags_from()
+ * Copied this from Charybdis 3.1.0 (sendto_realops_snomask_from()). 
+ * We need this for umode +F notices (and perhaps others as well).
+ * -- sjk
+ *
+ * inputs   - umode needed, level (opers/admin), source server, va_args
+ * output   -
+ * side effects - message is sent to opers with matching umodes
+ */
+void
+sendto_realops_flags_from(int flags, int level, struct Client *source_p, const char *pattern, ...)
+{
+    struct Client *client_p;
+    rb_dlink_node *ptr;
+    rb_dlink_node *next_ptr;
+    va_list args;
+    buf_head_t linebuf;
+
+    if(EmptyString(me.name))
+        return;
+
+    rb_linebuf_newbuf(&linebuf);
+
+    va_start(args, pattern);
+    rb_linebuf_putmsg(&linebuf, pattern, &args, ":%s NOTICE * :*** Notice -- ", source_p->name);
+    va_end(args);
+
+    RB_DLINK_FOREACH_SAFE(ptr, next_ptr, oper_list.head)
+    {
+        client_p = ptr->data;
+
+        /* If we're sending it to opers and theyre an admin, skip.
+         * If we're sending it to admins, and theyre not, skip.
+         */
+        if(((level == L_ADMIN) && !IsAdmin(client_p)) ||
+           ((level == L_OPER) && IsAdmin(client_p)))
+            continue;
+
+        if(client_p->umodes & flags)
+            send_linebuf(client_p, &linebuf);
+    }
+
+    rb_linebuf_donebuf(&linebuf);
+}
 
 /* sendto_channel_local()
  *

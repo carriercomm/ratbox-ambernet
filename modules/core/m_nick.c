@@ -1157,8 +1157,8 @@ register_client(struct Client *client_p, struct Client *server,
 	}
 
     /* Notice +F opers about client connections on other servers. -- sjk */ 
-    sendto_realops_flags(UMODE_FARCONNECT, L_ALL,
-            "Remote client connecting: %s (%s@%s) [%s] {%s} [%s]", 
+    sendto_realops_flags_from(UMODE_FARCONNECT, L_ALL, server,
+            "Client connecting: %s (%s@%s) [%s] {%s} [%s]",
             source_p->name, source_p->username, source_p->host,
             (strcmp(source_p->sockhost, "0") == 0) ? "255.255.255.255" : source_p->sockhost,
             "?", source_p->info);
