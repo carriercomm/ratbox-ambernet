@@ -1160,7 +1160,7 @@ register_client(struct Client *client_p, struct Client *server,
     sendto_realops_flags(UMODE_FARCONNECT, L_ALL,
             "Remote client connecting: %s (%s@%s) [%s] {%s} [%s]", 
             source_p->name, source_p->username, source_p->host,
-            show_ip(NULL, source_p) ? source_p->sockhost : "255.255.255.255",
+            (strcmp(source_p->sockhost, "0") == 0) ? "255.255.255.255" : source_p->sockhost,
             "?", source_p->info);
 
 	introduce_client(client_p, source_p);
