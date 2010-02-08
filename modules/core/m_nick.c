@@ -1156,6 +1156,13 @@ register_client(struct Client *client_p, struct Client *server,
 		return exit_client(source_p, source_p, &me, "USER server wrong direction");
 	}
 
+    /* Notice +F opers about client connections on other servers. -- sjk */ 
+    sendto_realops_flags_from(UMODE_FARCONNECT, L_ALL, server,
+            "Client connecting: %s (%s@%s) [%s] {%s} [%s]",
+            source_p->name, source_p->username, source_p->host,
+            (strcmp(source_p->sockhost, "0") == 0) ? "255.255.255.255" : source_p->sockhost,
+            "?", source_p->info);
+
 	introduce_client(client_p, source_p);
 	return 0;
 }

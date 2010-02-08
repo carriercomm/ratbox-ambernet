@@ -181,6 +181,8 @@ struct LocalUser;
 #define UMODE_ADMIN        0x200000	/* Admin on server */
 
 #define UMODE_OPERHIDE	   0x400000 /* Hide oper status in /whois */
+#define UMODE_FARCONNECT   0x800000 /* Show connect notices from other servers */
+
 #define UMODE_ALL	   UMODE_SERVNOTICE
 
 /* overflow flags */
@@ -196,7 +198,7 @@ struct LocalUser;
 		      UMODE_BOTS | UMODE_EXTERNAL | UMODE_LOCOPS | \
 		      UMODE_ADMIN | UMODE_UNAUTH | UMODE_CALLERID | \
 		      UMODE_OPERSPY | UMODE_CCONNEXT | UMODE_SERVICE | \
-		      UMODE_DEAF | UMODE_OPERHIDE)
+		      UMODE_DEAF | UMODE_OPERHIDE | UMODE_FARCONNECT)
 
 #define CLICAP_MULTI_PREFIX	0x0001
 
@@ -276,6 +278,7 @@ struct LocalUser;
 #define IsService(x)		((x)->umodes & UMODE_SERVICE)
 #define IsDeaf(x)		((x)->umodes & UMODE_DEAF)
 #define IsOperHide(x)	((x)->umodes & UMODE_OPERHIDE)
+#define IsFarConnect(x) ((x)->umodes & UMODE_FARCONNECT)
 
 #define SetNeedId(x)            ((x)->flags |= FLAGS_NEEDID)
 #define IsNeedId(x)             (((x)->flags & FLAGS_NEEDID) != 0)

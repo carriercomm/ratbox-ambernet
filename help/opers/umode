@@ -15,6 +15,7 @@ Usermodes: (* designates that the umode is oper only)
        * +C     - Can see extended client connections and exits.
        * +d     - Can see server debug messages.
        * +f     - Can see 'I-line is full' notices.
+       * +F     - Can see global connect/exit notices.
        * +k     - Can see server kill messages.
        * +l     - Can see oper locops (local wallops).
        * +n     - Can see client nick changes.

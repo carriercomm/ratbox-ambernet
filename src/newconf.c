@@ -141,6 +141,7 @@ static struct mode_table umode_table[] = {
 	{"operwall",	UMODE_OPERWALL	},
 	{"operspy",	UMODE_OPERSPY	},
 	{"operhide", UMODE_OPERHIDE },
+    {"farconnect", UMODE_FARCONNECT },
 	{NULL, 0}
 };
 

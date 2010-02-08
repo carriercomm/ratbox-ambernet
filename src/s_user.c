@@ -72,6 +72,7 @@ static struct flag_item user_modes[] = {
 	{UMODE_CCONNEXT,	'C'},
 	{UMODE_DEBUG,		'd'},
 	{UMODE_DEAF,		'D'},
+    {UMODE_FARCONNECT,  'F'},
 	{UMODE_FULL,		'f'},
 	{UMODE_CALLERID,	'g'},
 	{UMODE_INVISIBLE,	'i'},
@@ -106,7 +107,7 @@ int user_modes_from_c_to_bitmask[] = {
 	UMODE_CCONNEXT,		/* C */
 	UMODE_DEAF,		/* D */
 	0,			/* E */
-	0,			/* F */
+	UMODE_FARCONNECT,	/* F */
 	0,			/* G */
 	0,			/* H */
 	0,			/* I */

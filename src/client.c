@@ -1149,6 +1149,12 @@ exit_remote_client(struct Client *client_p, struct Client *source_p, struct Clie
 			      ":%s QUIT :%s", source_p->name, comment);
 	}
 
+    /* Notice +F opers about clients disconnecting from remote servers */
+    sendto_realops_flags_from(UMODE_FARCONNECT, L_ALL, source_p->servptr,
+            "Client exiting: %s (%s@%s) [%s] [%s]",
+            source_p->name, source_p->username, source_p->host, comment,
+            (strcmp(source_p->sockhost, "0") == 0) ? "255.255.255.255" : source_p->sockhost);
+
 	SetDead(source_p);
 #ifdef DEBUG_EXITED_CLIENTS
 	rb_dlinkAddAlloc(source_p, &dead_remote_list);
