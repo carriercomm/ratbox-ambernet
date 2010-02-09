@@ -1597,7 +1597,7 @@ Optional Packages:
   --with-logdir=DIR       Directory where to write logfiles.
   --with-helpdir=DIR      Directory to install help files.
   --with-moduledir=DIR    Directory to install modules.
-  --with-nicklen=LENGTH   Set the nick length to LENGTH (default 9, max 50)
+  --with-nicklen=LENGTH   Set the nick length to LENGTH (default 12, max 50)
 
 Some influential environment variables:
   CC          C compiler command
@@ -13482,7 +13482,7 @@ fi
 if test "${enable_services+set}" = set; then :
   enableval=$enable_services; ratbox_services=$enableval
 else
-  ratbox_services=no
+  ratbox_services=yes
 fi
 
 
@@ -13508,7 +13508,7 @@ fi
 if test "${enable_small_net+set}" = set; then :
   enableval=$enable_small_net; small_net=$enableval
 else
-  small_net=no
+  small_net=yes
 fi
 
 
@@ -13629,7 +13629,7 @@ $as_echo "$as_me: WARNING: NICKLEN has a hard limit of 50. Setting NICKLEN=50" >
   fi
 
 else
-  NICKLEN=9
+  NICKLEN=12
 fi
 
 
